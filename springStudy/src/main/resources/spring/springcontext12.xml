@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<!-- 자동으로 Bean을 검색해서 주입하는 ComponentScan  -->
-	<context:component-scan base-package="org.zerock.part11"></context:component-scan>
+	<context:component-scan base-package="org.zerock.part12"></context:component-scan>
 	<context:annotation-config></context:annotation-config>
 	<!-- 추가 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
