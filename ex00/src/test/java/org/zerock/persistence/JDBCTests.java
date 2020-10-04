@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import lombok.extern.log4j.Log4j;
 
+//jdbc 정적 테스트 코드
 @Log4j
 public class JDBCTests {
 	static {

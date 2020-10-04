@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+//HikariCP를 사용한 JDBC (Oracle) 테스트 코드 + Mybatis 와 SqlSessionFatory
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
