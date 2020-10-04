@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+//Java 설정을 이용하는 의존성 주입 --> root-context.xml을 애너테이션으로 대체하는 클래스
 @Configuration
 @ComponentScan(basePackages = {"org.zerock.sample"})
 @MapperScan(basePackages= {"org.zerock.mapper"})
