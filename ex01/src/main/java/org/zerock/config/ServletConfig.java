@@ -1,6 +1,11 @@
 package org.zerock.config;
 
+import java.io.IOException;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -27,4 +32,27 @@ public class ServletConfig implements WebMvcConfigurer{
 		// TODO Auto-generated method stub
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	//servlet-context.xml 에서 말고 config로 설정할 경우
+	@Bean(name ="multipartResolver")
+	public CommonsMultipartResolver getResolver() throws IOException{
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		
+		//10MB
+		resolver.setMaxUploadSize(1024 * 1024 * 10);
+		
+		//2MB
+		resolver.setMaxUploadSizePerFile(1024 *1024 * 2);
+		
+		//1MB
+		resolver.setMaxInMemorySize(1024 * 1024);
+		
+		//temp upload
+		resolver.setUploadTempDir(new FileSystemResource("C:\\upload\\temp"));
+		
+		resolver.setDefaultEncoding("UTF-8");
+		
+		return resolver;
+	}
+	
 }
