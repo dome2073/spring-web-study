@@ -49,10 +49,10 @@ public class BoardController {
 	}
 	
 	//해당 게시물번호로 게시물 조회
-	@GetMapping("/get")
+	@GetMapping({"/get" ,"/modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		
-		log.info("get");
+		log.info("get or modify");
 		model.addAttribute("board", service.get(bno));
 	}
 	
