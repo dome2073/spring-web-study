@@ -43,7 +43,7 @@
                            		</div>
                            		
                            		 <!-- 직접 링크에서 변경함 , 변경에 유리하도록 -->
-                           		<button data-oper='modify ' class="btn btn-default">Modify</button>
+                           		<button data-oper='modify' class="btn btn-default">Modify</button>
                            		<button data-oper='list' class="btn btn-default">List</button>
                            		
                            		<form id='operForm' action="/board/modify" method="get">
@@ -64,10 +64,12 @@
 					var operForm = $("#operForm");
 					
 					$("button[data-oper='modify']").on("click", function(e){
+						alert("클릭");
 						operForm.attr("action", "/board/modify").submit();
 					});
 					
 					$("button[data-oper='list']").on("click", function(e){
+						alert("클릭");
 						operForm.find("#bno").remove();
 						operForm.attr("action","/board/list");
 						operForm.submit();
