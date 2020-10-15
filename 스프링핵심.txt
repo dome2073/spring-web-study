@@ -1,0 +1,49 @@
+servlet-context.xml -1
+root-context.xml -2 
+
+--하나로 쓰는경우도있음
+
+web.xml
+- ac어딨는지 
+- listener : 톰켓 시작하면 리스너에 의해 ac생성
+- DispatcherServlet : 모든요청을 다 받는다 (appServlet)
+- dc config 
+
+★의존성 주입 (DI) : 객체주입★
+- 외부에서 주입받는다, 직접X(NEW)
+- ★AC★(스프링 컨텍스트)는 1. 객체 생성, 2. 관계설정까지 해준다. --> 코드로 하지않고 XML로 관리 (변경에 유리)
+  -> 자바설정으로 바꾸는 추세(Annotation) 컴파일러가 체크해주니 엄격한 검사가능 (p.60)
+- 의존성 주입 : --> @Autowired / @Inject  // 4.3 이후에는 자동주입
+
+★AOP :  자동코드추가★
+DataSource 
+- Pooling으로 객체를 *미리 생성*하고 빌려쓰는 방식으로 연결시간 단축 (Connection Pool)
+- DBCP, HikariCP 
+- 사용하고 반납, 사용자가 많아졌을때는 객체수를 늘림
+
+Mybatis
+- SQL Mapping Framework
+ 
+JPA -  SQL 문을 사용하지않고 객체생성해서 사용하면 DB에서 반환해줌
+        장점 : TDD 가능 / 
+        ORM(Object-relational mapping) - 객체 관리 매핑 // 나중에 자세히 공부
+
+MVC (Model-View-Controller) 
+M : 데이터
+V : 모델의 데이터로 응답
+C : 사용자요청
+	 ---> Servlet은 (Controller+ view)
+
+Spring Anntiation
+@Component를 이용해서 동작하는 애너테이션들 (Bean자동등록)
+- @Controller
+- @Service
+- @Repository
+
+에러잡기
+1. 메세지를 봐라 . 영어라고 무시하지말고 메세지가 언제나타는지 찾아서 처리
+2. 생산성을 높이는 방법을 생각해라 --> 에러메세지 정리
+
+--나중에 md파일로 바꾸기
+
+               
