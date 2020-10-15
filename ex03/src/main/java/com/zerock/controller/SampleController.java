@@ -75,7 +75,15 @@ public class SampleController {
 
 		return result;
 	}
-
+	
+	@GetMapping("/product/{cat}/{pid")
+	public String[] getPath(
+				@PathVariable("cat") String cat,
+				@PathVariable("pid") Integer pid
+			) {
+		return new String[] {"category : " + cat, "productid: " + pid};
+	}
+	
 	@PostMapping("/ticket")
 	public Ticket convert(@RequestBody Ticket ticket) {
 		log.info("convert ........ticket" + ticket);
