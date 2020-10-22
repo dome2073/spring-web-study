@@ -157,7 +157,7 @@
 										return;
 										}
 									for (var i = 0, len = list.length || 0; i < len; i++) {
-											console.log("list ["+ i+ "] : "+ list[i].replyDate)
+											
 											str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 											str += "<div><div class='header'><strong class='primary-font'>"+ list[i].replyer+ "</strong>";
 											str += "    <small class='pull-right text-muted'>"+ replyService.displayTime(list[i].replyDate)+ "</small></div>";
@@ -202,8 +202,56 @@
 								
 								modal.find("input").val("");
 								modal.modal("hide");
-							})
-						})
+								
+								showList(1);
+							});
+						});
+						
+						$(".chat").on("click", "li", function(e){
+							
+							var rno = $(this).data("rno");
+							
+							replyService.get(rno, function(reply){
+								modalInputReply.val(reply.reply);
+								modalInputReplyer.val(replyService.displayTime(reply.replyDate))
+								.attr("readonly", "readonly");
+								modal.data("rno", reply.rno);
+								
+								modal.find("button[id != 'modalCloseBtn']").hide();
+								modalModBtn.show();
+								modalRemoveBtn.show();
+								
+								$(".modal").modal("show");
+								
+							});
+						});
+						
+						//모달창 - 댓글수정 //잘됨
+						modalModBtn.on("click", function(e){
+							
+							var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+							
+							replyService.update(reply, function(result){
+								
+							alert(result);
+							modal.modal("hide");
+							showList(1);
+							
+							});
+							
+						});
+						
+						modalRemoveBtn.on("click", function(e){
+								
+							var rno = modal.data("rno");
+							
+							replyService.remove(rno, function(result){
+								
+								alert(result);
+								modal.modal("hide");
+								showList(1);
+							});
+						});
 				});
 	/* console.log("==========================");
 	console.log("JS TEST");
