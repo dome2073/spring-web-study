@@ -1,92 +1,275 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<%@ include file="../includes/header.jsp" %>
-	
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Board Read</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                           Board Read Page
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                           
-                           		<div class="form-group">
-                           			<lable>Bno</lable> <input class="form-control" name='bno' value='<c:out value="${board.bno}"/>' readonly ="readonly">
-                           		</div>
-                           		
-                           		<div class="form-group">
-                           			<label>Title</label>
-                           			<input class="form-control" name='title' value='<c:out value="${board.title}"/>' readonly ="readonly">
-                           		</div>
-                           		
-                           		<div class="form-group">
-                           			<label>Text area</label>
-                           			<textarea class="form-control" name='content' readonly ="readonly" rows="3" cols=""><c:out value="${board.content}"/></textarea>
-                           		</div>
-                           		
-                           		<div class="form-group">
-                           			<label>Writer</label>
-                           			<input class="form-control" name='writer' value='<c:out value="${board.writer}"/>' readonly ="readonly">
-                           		</div>
-                           		
-                           		 <!-- 직접 링크에서 변경함 , 변경에 유리하도록 -->
-                           		<button data-oper='modify' class="btn btn-default">Modify</button>
-                           		<button data-oper='list' class="btn btn-default">List</button>
-                           		
-                           		<form id='operForm' action="/board/modify" method="get">
-                           			<input type='hidden' id='bno' name ='bno' value='<c:out value="${board.bno }"/>'>
-                           			<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-                           			<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
-                           			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
-                           			<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>
-                           		</form>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-            <script type="text/javascript" src="/resources/js/reply.js"></script>
-            
-            <script type="text/javascript">
-            	$(document).ready(function(){
-            		console.log(replyService);
-            	
-            	});
-            
-            </script>
-            
-            <script type="text/javascript">
-				$(document).ready(function(){
-					var operForm = $("#operForm");
-					
-					$("button[data-oper='modify']").on("click", function(e){
-						alert("클릭");
-						operForm.attr("action", "/board/modify").submit();
-					});
-					
-					$("button[data-oper='list']").on("click", function(e){
-						alert("클릭");
-						operForm.find("#bno").remove();
-						operForm.attr("action","/board/list");
-						operForm.submit();
-					});
+<%@ include file="../includes/header.jsp"%>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Board Read</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Board Read Page</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+
+				<div class="form-group">
+					<lable>Bno</lable>
+					<input class="form-control" name='bno'
+						value='<c:out value="${board.bno}"/>' readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>Title</label> <input class="form-control" name='title'
+						value='<c:out value="${board.title}"/>' readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>Text area</label>
+					<textarea class="form-control" name='content' readonly="readonly"
+						rows="3" cols=""><c:out value="${board.content}" /></textarea>
+				</div>
+
+				<div class="form-group">
+					<label>Writer</label> <input class="form-control" name='writer'
+						value='<c:out value="${board.writer}"/>' readonly="readonly">
+				</div>
+
+				<!-- 직접 링크에서 변경함 , 변경에 유리하도록 -->
+				<button data-oper='modify' class="btn btn-default">Modify</button>
+				<button data-oper='list' class="btn btn-default">List</button>
+
+				<form id='operForm' action="/board/modify" method="get">
+					<input type='hidden' id='bno' name='bno'
+						value='<c:out value="${board.bno }"/>'> <input
+						type='hidden' name='pageNum'
+						value='<c:out value="${cri.pageNum}"/>'> <input
+						type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+					<input type='hidden' name='keyword'
+						value='<c:out value="${cri.keyword}"/>'> <input
+						type='hidden' name='type' value='<c:out value="${cri.type}"/>'>
+				</form>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+<hr />
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-comments fa-fw"></i>Reply
+				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
+					Reply</button>
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+
+				<ul class="chat">
+					<!-- start reply -->
+					<li class="left clearfix" data-rno='12'>
+						<div>
+							<div class="header">
+								<strong class="primary-font">user00</strong> <small
+									class="pull-right text-muted">2018-01-01 13:13</small>
+							</div>
+							<p>Good job!</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Reply</label>
+					<input class="form-control" name='reply' value='New Reply!!!!'>
+				</div>
+				
+				<div class="form-group">
+					<label>Replyer</label>
+					<input class="form-control" name='replyer' value='replyer'>
+				</div>
+				
+				<div class="form-group">
+					<label>Reply Date</label>
+					<input class="form-control" name='replyDate' value=''>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="modalRegisterBtn" class="btn btn-warning" data-dismiss="modal">Register</button>
+				<button type="button" id="modalModBtn" class="btn btn-warning" data-dismiss="modal">Modify</button>
+				<button type="button" id="modalRemoveBtn" class="btn btn-danger">Remove</button>
+				<button type="button" id="modalCloseBtn" class="btn btn-default" data-dismiss="modal">Close</button> 
+				<button type="button" id="modalClassBtn" class="btn btn-default" data-dismiss="modal">Close</button> 
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var bnoValue = '<c:out value="${board.bno}"/>';
+						var replyUL = $(".chat");
+
+						showList(1);
+
+						function showList(page) {
+
+							replyService.getList({
+								bno : bnoValue,page : page || 1},
+								function(list) {
+									var str = "";
+									if (list == null|| list.length == 0) {
+										replyUL.html("");
+										return;
+										}
+									for (var i = 0, len = list.length || 0; i < len; i++) {
+											console.log("list ["+ i+ "] : "+ list[i].replyDate)
+											str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+											str += "<div><div class='header'><strong class='primary-font'>"+ list[i].replyer+ "</strong>";
+											str += "    <small class='pull-right text-muted'>"+ replyService.displayTime(list[i].replyDate)+ "</small></div>";
+											str += "    <p>"+ list[i].reply+ "</p></div></li>";
+										}
+										replyUL.html(str);
+								})
+						}
+						
+						var modal = $(".modal");
+						var modalInputReply = modal.find("input[name='reply']");
+						var modalInputReplyer = modal.find("input[name='replyer']");
+						var modalInputReplyDate = modal.find("input[name='replyDate']");
+						
+						var modalModBtn = $("#modalModBtn");
+						var modalRemoveBtn = $("#modalRemoveBtn");
+						var modalRegisterBtn = $("#modalRegisterBtn");
+						var modalCloseBtn = $("#modalCloseBtn");
+						
+						$("#addReplyBtn").on("click", function(e){
+							
+						modal.find("input").val("");
+						modalInputReplyDate.closest("div").hide();
+						modal.find("button[id != 'modalCloseBtn']").hide();
+						
+						modalRegisterBtn.show();
+						modalCloseBtn.show();
+						
+						$(".modal").modal("show");
+						});
+						
+						
+						modalRegisterBtn.on("click", function(e){
+							var reply = {
+									reply : modalInputReply.val(),
+									replyer : modalInputReplyer.val(),
+									bno:bnoValue
+							};
+							replyService.add(reply, function(result){
+								
+								alert(result);
+								
+								modal.find("input").val("");
+								modal.modal("hide");
+							})
+						})
 				});
-			</script>
-            <%@include file="../includes/footer.jsp" %>
-        
+	/* console.log("==========================");
+	console.log("JS TEST");
+	
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	
+	
+	//추가
+	replyService.add(
+		{reply : "JS Test", replyer : "tester", bno: bnoValue}
+		,
+		function(result){
+			alert("RESULT : " + result);
+		}
+	);
+	
+	//조회
+	replyService.getList({bno:bnoValue, page:1}, function(list){
+		for(var i=0, len = list.length ||0; i< len; i++){
+			console.log(list[i]);
+		}
+	});
+	
+	//삭제 (23번댓글 삭제하기) -OK
+	replyService.remove(24, function(count){
+		
+		console.log(count);
+		
+		if(count === "success"){
+			alert("REMOVE");
+		}
+	}, function(err){
+		alert('ERROR....');
+	});
+	
+	//수정하기 (22번댓글)
+	replyService.update({
+		rno : 22,
+		bno : bnoValue,
+		reply : "Modified Reply...."
+	}, function(result){
+		alert("수정 완료....");
+	});
+	
+	//댓글조회
+	replyService.get(10, function(data){
+		console.log("get : "+data);
+	}); */
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var operForm = $("#operForm");
+
+		$("button[data-oper='modify']").on("click", function(e) {
+			alert("클릭");
+			operForm.attr("action", "/board/modify").submit();
+		});
+
+		$("button[data-oper='list']").on("click", function(e) {
+			alert("클릭");
+			operForm.find("#bno").remove();
+			operForm.attr("action", "/board/list");
+			operForm.submit();
+		});
+	});
+</script>
+<%@include file="../includes/footer.jsp"%>
+
