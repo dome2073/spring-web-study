@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<bean id="Car" class="com.codechobo.app6.SportsCar"> <!-- 기본생성자 있어야 호출 -->
+		<!-- Autowired 배열시 처리방법 , 전에는 배열하나에 통째로들어가는 이슈 -->
+		
+		
+		<!-- oil의 타입이 int지만 자동형변환 해줌 -->
+		<!-- <property>는 해당 객체의 setter를 호출한다 / setter가 반드시 있어야함 -->
+		<!-- 기본형은 value, 참조는 ref  -->
+		<property name="oil" value="100"></property>
+		<property name="engine" ref="Engine"></property>
+		<property name="doors">
+			<array value-type="com.codechobo.app6.Door">
+				<ref bean="Door"/>
+				<ref bean="Door"/>
+				<ref bean="Door"/>
+				<ref bean="Door"/>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="Engine" class="com.codechobo.app6.Engine"></bean>
+	<bean id="Door" class="com.codechobo.app6.Door" scope="prototype"></bean>
+	
+	<context:annotation-config/>
+	
+	
+</beans>
